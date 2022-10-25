@@ -17,7 +17,7 @@
                             <div class="overflow-hidden text-center h-20"><img class="w-full h-20 object-cover" :src="blog.image"></div>
                             <div class="col-span-3 ml-4">
                                 <h1>{{blog.title}}</h1>
-                                <h3>{{blog.time}}</h3>
+                                <h3 class="text-xs">{{blog.time}}</h3>
 
                             </div>
                         </div>
@@ -31,6 +31,9 @@
 <script>
 import headerUser from '../components/user/headerUser.vue'
 import footerUser from '../components/user/footerUser.vue'
+
+import { collection, getDocs } from "firebase/firestore"
+import { db } from '@/firebase'
 
 export default {
   name: 'HomeView',
@@ -91,12 +94,18 @@ export default {
     headerUser,
     footerUser
   },
-  mounted () {
-   this.blog = JSON.parse(localStorage.getItem("selectedBlog"))
-    //this.selectedBlogCategory = this.$store.state.blog.category
+  async mounted () {
+    //This gets the data from firestore
+    const querySnapshot = await getDocs(collection(db, "blog"));
+    querySnapshot.forEach((doc) => {
+        const blog = doc.data()
+        this.allBlogPost.push(blog)
+    })
+
+    //This gets the blog stores  in the localstorage
+    this.blog = JSON.parse(localStorage.getItem("selectedBlog"))
     this.selectedBlogCategory = this.blog.category;
 
-    //this.selectedBlogTitle = this.$store.state.blog.title
     this.selectedBlogTitle = this.blog.title
     //This selects the array with the given category
     this.relatedArticleFilter1 = this.allBlogPost.filter(m => m.category == this.selectedBlogCategory)

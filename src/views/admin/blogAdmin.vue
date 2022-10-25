@@ -1,6 +1,6 @@
 <template>
     <div class="p-2 md:p-32">
-        <button @click="addBlog = !addBlog" class="border-2 border-pink-700 p-3 mt-5 mb-5 rounded-md box hover:bg-pink-700 hover:text-white">Add Post</button>
+        <button v-show="!addBlog" @click="addBlog = !addBlog" class="border-2 border-pink-700 p-3 mt-5 mb-5 rounded-md box hover:bg-pink-700 hover:text-white">Add Post</button>
         <div v-show="addBlog">
             <div class="p-5 text-center" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;; width:100%">
                 <input class="w-full md:w-96 p-5 mb-5" type="text" placeholder="Image Link" v-model="image"><br>
