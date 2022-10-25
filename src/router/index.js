@@ -34,6 +34,16 @@ const routes = [
     path: '/admin/blog',
     name: 'admin/blog',
     component: () => import('../views/admin/blogAdmin.vue')
+  },
+  {
+    path: '/admin/party',
+    name: 'admin/party',
+    component: () => import('../views/admin/partyAdmin.vue')
+  },
+  {
+    path: '/admin/defaulters',
+    name: 'admin/defaulters',
+    component: () => import('../views/admin/defaultersAdmin.vue')
   }
 ]
 

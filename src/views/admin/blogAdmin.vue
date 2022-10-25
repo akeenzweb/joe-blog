@@ -1,5 +1,6 @@
 <template>
     <div class="p-2 md:p-32">
+        <div class="flex justify-center text-2xl font-bold">MY BLOGS</div>
         <button v-show="!addBlog" @click="addBlog = !addBlog" class="border-2 border-pink-700 p-3 mt-5 mb-5 rounded-md box hover:bg-pink-700 hover:text-white">Add Post</button>
         <div v-show="addBlog">
             <div class="p-5 text-center" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;; width:100%">
@@ -21,15 +22,15 @@
                     <th>#</th>
                     <th class="text-left">Image</th>
                     <th class="text-left pl-2">Title</th>
-                    <th class="text-left">Edit</th>
+                    <th class="text-left" >Edit</th>
                     <th class="text-left">Delete</th>
                 </tr>
                 <tr class="" v-for="(blog, index) in blogArray" :key="index">
                     <td>{{index + 1}}</td>
                     <td class="h-20 overflow-hidden text-center "><img class="w-full h-20 object-cover" :src="blog.image"></td>
                     <td class="item-start pl-2 text-sm md:text-xl">{{blog.title}}</td>
-                    <td><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg></td>
-                    <td><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></td>
+                    <td><svg @click="editPost(index)" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg></td>
+                    <td><svg @click="deletePost(blog.id)" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></td>
                 </tr>
             </table>
         </div>
@@ -37,12 +38,13 @@
 </template>
 
 <script>
-import { collection, getDocs, addDoc } from "firebase/firestore"
+import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore"
 import { db } from '@/firebase'
 export default {
     data () {
         return {
             addBlog: false,
+            edit: false,
             blogArray: [],
             time: null,
             date: null,
@@ -79,10 +81,31 @@ export default {
             this.newPost.image = this.image
             this.newPost.category = this.category
             this.newPost.post = this.post
-            this.newPost.time = this.time + '' + this.date
+            this.newPost.time = this.time + ' ' + this.date
 
-            await addDoc(collection(db, "blog"), this.newPost)
-            this.addBlog = false
+            if (this.edit == false) {
+                await addDoc(collection(db, "blog"), this.newPost)
+                this.addBlog = false
+            }else{
+                await updateDoc(doc(db, "blog", this.id),this.newPost);
+                this.addBlog = false
+                this.edit = false
+            }
+
+        },
+        editPost (index) {
+            this.addBlog = true
+            this.title = this.blogArray[index].title
+            this.category = this.blogArray[index].category
+            this.image = this.blogArray[index].image
+            this.post = this.blogArray[index].post
+            this.id = this.blogArray[index].id
+
+            this.edit = true
+        },
+        async deletePost(id){
+            await deleteDoc(doc(db, "blog", id));
+            alert('Post has being deleted')
         }
     }
 }
