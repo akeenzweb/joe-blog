@@ -86,10 +86,12 @@ export default {
             if (this.edit == false) {
                 await addDoc(collection(db, "blog"), this.newPost)
                 this.addBlog = false
+                window.location.reload()
             }else{
                 await updateDoc(doc(db, "blog", this.id),this.newPost);
                 this.addBlog = false
                 this.edit = false
+                window.location.reload()
             }
 
         },
@@ -106,6 +108,7 @@ export default {
         async deletePost(id){
             await deleteDoc(doc(db, "blog", id));
             alert('Post has being deleted')
+            window.location.reload()
         }
     }
 }

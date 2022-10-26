@@ -64,10 +64,12 @@ export default {
             if (this.edit == false) {
                 await addDoc(collection(db, "parties"), this.newParty)
                 this.addParty = false
+                window.location.reload()
             }else{
                 await updateDoc(doc(db, "parties", this.id),this.newParty);
                 this.addParty = false
                 this.edit = false
+                window.location.reload()
             }
 
         },

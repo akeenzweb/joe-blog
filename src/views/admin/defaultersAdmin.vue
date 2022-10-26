@@ -66,10 +66,12 @@ export default {
             if (this.edit == false) {
                 await addDoc(collection(db, "defaulters"), this.newDefaulter)
                 this.addDefaulter = false
+                window.location.reload()
             }else{
                 await updateDoc(doc(db, "defaulters", this.id),this.newDefaulter);
                 this.addDefaulter = false
                 this.edit = false
+                window.location.reload()
             }
 
         },
@@ -84,6 +86,7 @@ export default {
         async deleteDefaulter(id){
             await deleteDoc(doc(db, "defaulters", id));
             alert('Post has being deleted')
+            window.location.reload()
         }
     }
 }
