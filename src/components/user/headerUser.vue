@@ -9,7 +9,7 @@
                 <router-link to="/"><li class="text-gold-400 block md:inline-block border-b-2 border-yellow-600">Home</li></router-link>
                 <router-link to="/about"><li :class="route === '/about' ? 'active' : 'not-active' " class="block md:inline-block">Political Parties</li></router-link>
                 <router-link to="/defaulters"><li class="block md:inline-block">Defaulters</li></router-link>
-                <li class="block md:inline-block">Chart</li>
+                <router-link to="/admin"><li class="block md:inline-block">Chart</li></router-link>
             </ul>
 
             <transition name="menu">
@@ -17,7 +17,7 @@
                     <router-link to="/"><li class="text-gold-400 block md:inline-block mb-2 border-b-2 border-yellow-500">Home</li></router-link>
                     <router-link to="/about"><li class="block md:inline-block mb-2">Political Parties</li></router-link>
                     <router-link to="/defaulters"><li class="block md:inline-block mb-2">Defaulters</li></router-link>
-                    <li class="block md:inline-block mb-2">Chart</li>
+                    <router-link to="/admin"><li class="block md:inline-block mb-2">Chart</li></router-link>
                 </ul>
             </transition>
 

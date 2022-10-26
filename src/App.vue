@@ -4,7 +4,7 @@
     <router-link to="/about">About</router-link>
   </nav>-->
   <router-view/>
-  <marquee class="marq bg-yellow-500 text-white" direction="left" width="100%">"I’d been hightailed to the operating room, where my detonated fallopian tube, along with the embryo inside it, was removed, saving my life."BY LINDSEY LANGE-ABRAMOWITZ, GUEST WRITER</marquee>
+  <marquee class="marq bg-yellow-500 text-white" direction="left" width="100%">A Federal High Court sitting in Calabar has declared Bassey Otu as the governorship candidate of the All Progressives Congress in Cross River State for the 2023 election. Justice Ijeoma Ojukwu made the declaration while delivering judgment in a suit in Calabar. A member of the APC and governorship aspirant Owan Enoh is Otu’s challenger for the party’s governorship ticket. He filed a suit seeking Otu’s disqualification as the APC’s governorship candidate for the 2023 general elections. Justice Ojukwu in her ruling said the matter of determination of a governorship candidate of a political party is, and still remains the right of a political party.</marquee>
 </template>
 
 <style>
