@@ -19,7 +19,7 @@ export default {
                     //label: '# of Votes',
                     label: '% of Crossings',
                     //data: [12, 19, 3, 5, 2, 3],
-                    data: [12, 19, 3, 5],
+                    data: [60, 95, 15, 20],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

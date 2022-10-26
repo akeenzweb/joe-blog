@@ -6,18 +6,18 @@
                 <span class=" md:hidden"><i @click="menubar = !menubar" class="fa fa-bars fa-2x" aria-hidden="true"></i></span>
             </div>
             <ul class="md:flex justify-around py-3 text-lg menu-desktop">
-                <router-link to="/"><li class="text-gold-400 block md:inline-block border-b-2 border-yellow-600">Home</li></router-link>
-                <router-link to="/about"><li :class="route === '/about' ? 'active' : 'not-active' " class="block md:inline-block">Political Parties</li></router-link>
-                <router-link to="/defaulters"><li class="block md:inline-block">Defaulters</li></router-link>
-                <router-link to="/admin"><li class="block md:inline-block">Chart</li></router-link>
+                <router-link to="/"><li @click="homeLink()" :class="$store.state.home ? 'active' : '' " class="text-gold-400 block md:inline-block">Home</li></router-link>
+                <router-link to="/about"><li @click="partyLink()" :class="$store.state.party ? 'active' : '' "  class="block md:inline-block">Political Parties</li></router-link>
+                <router-link to="/defaulters"><li @click="defaultersLink()" :class="$store.state.defaulters ? 'active' : '' " class="block md:inline-block">Defaulters</li></router-link>
+                <li  class="block md:inline-block">Chart</li>
             </ul>
 
             <transition name="menu">
                 <ul v-show="menubar" class="md:flex justify-around py-3 text-lg menu-mobile z-[-1]">
-                    <router-link to="/"><li class="text-gold-400 block md:inline-block mb-2 border-b-2 border-yellow-500">Home</li></router-link>
-                    <router-link to="/about"><li class="block md:inline-block mb-2">Political Parties</li></router-link>
-                    <router-link to="/defaulters"><li class="block md:inline-block mb-2">Defaulters</li></router-link>
-                    <router-link to="/admin"><li class="block md:inline-block mb-2">Chart</li></router-link>
+                    <router-link to="/"><li @click="homeLink()" :class="$store.state.home ? 'active' : '' " class="text-gold-400 block md:inline-block mb-2 ">Home</li></router-link>
+                    <router-link to="/about"><li  @click="partyLink()" :class="$store.state.party ? 'active' : '' " class="block md:inline-block mb-2">Political Parties</li></router-link>
+                    <router-link to="/defaulters"><li @click="defaultersLink()" :class="$store.state.defaulters ? 'active' : '' "  class="block md:inline-block mb-2">Defaulters</li></router-link>
+                    <li class="block md:inline-block mb-2">Chart</li>
                 </ul>
             </transition>
 
@@ -32,6 +32,23 @@ export default {
     data () {
         return {
             menubar: false
+        }
+    },
+    methods: {
+        homeLink () {
+            this.$store.state.home = true
+            this.$store.state.party = false
+            this.$store.state.defaulters = false
+        },
+        partyLink () {
+            this.$store.state.home = false
+            this.$store.state.party = true
+            this.$store.state.defaulters = false
+        },
+        defaultersLink () {
+            this.$store.state.home = false
+            this.$store.state.party = false
+            this.$store.state.defaulters = true
         }
     }
 }
