@@ -1,6 +1,11 @@
 <template>
   <div class="home">
     <headerUser />
+    <div class="p-5 md:p-20 "><h1><b>POLITICAL CROSS CARPETING</b></h1>
+        <h3>Why do some people switch political parties? After all, if someone is committed enough to a particular vision of politics, wouldn’t they be relatively immune to the charms of its competitors?
+
+It turns out, however, that switching parties at grassroots membership level is by no means uncommon, even giving rise in some quarters to accusations of “entryism”.</h3>
+    </div>
 
     <div class="p-5 md:p-20 ">
       <h2 class="uppercase font-bold text-2xl mb-4">Latest News</h2>
@@ -11,20 +16,6 @@
             <p class="cursor-pointer">{{blog.title}}</p>
           </h1>
         </li>
-
-        <!--<li  @click="goToBlog()">
-          <h1 class="img-box">
-            <img src="../assets/images/blog1.jpg" class="block-cover">
-            <p class="cursor-pointer">Easiest countries to secure a loan</p>
-          </h1>
-        </li>
-
-        <li  @click="goToBlog()">
-          <h1 class="img-box">
-            <img src="../assets/images/blog1.jpg" class="block-cover">
-            <p class="cursor-pointer">Easiest countries to secure a loan</p>
-          </h1>
-        </li>-->
       </ul>
 
       <div class="grid md:grid-cols-2">
@@ -42,30 +33,6 @@
                 </tr>
               </table>
             </li>
-
-            <!--<li class="flex justify-between mb-10"  @click="goToBlog()">
-              <table>
-                <tr class="flex">
-                  <td><h2 class="img-box2"><img src="../assets/images/blog1.jpg" class="block-cover"></h2></td>
-                  <td>
-                    <h3 class=" text-gray-700 uppercase cursor-pointer">Easiest countries to secure a loan</h3><br>
-                    <h3>20/11/22</h3>
-                  </td>
-                </tr>
-              </table>
-            </li>
-
-            <li class="flex justify-between mb-10"  @click="goToBlog()">
-              <table>
-                <tr class="flex">
-                  <td><h2 class="img-box2"><img src="../assets/images/blog1.jpg" class="block-cover"></h2></td>
-                  <td>
-                    <h3 class=" text-gray-700 uppercase cursor-pointer">Easiest countries to secure a loan</h3><br>
-                    <h3>20/11/22</h3>
-                  </td>
-                </tr>
-              </table>
-            </li>-->
           </ul>
         </div>
 
